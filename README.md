@@ -46,10 +46,10 @@ Finally, the DataFrame obtained is converted into a NumPy array, making the data
 ## Classification Model
 
 The developed classification model implements an unsupervised approach, focused on the detection of anomalies based on statistical discrepancy with respect to the Benford distribution, without the use of supervised training or conventional machine learning. It was implemented in Python, using the following libraries:
-• NumPy for numerical operations and array manipulation,
-• SciPy for statistical tests (chi-square),
-• Pandas for data handling and reporting performance metrics,
-• Custom functions for metrics such as MAD, Euclidean, Hellinger, and KL divergence.
+- NumPy for numerical operations and array manipulation,
+- SciPy for statistical tests (chi-square),
+- Pandas for data handling and reporting performance metrics,
+- Custom functions for metrics such as MAD, Euclidean, Hellinger, and KL divergence.
 
 The system is organized into modular components following a sequential pipeline. It involves the sequential application of different statistical tests and distance measurements, whose results are subsequently combined to generate predictions and performance metrics. 
 
@@ -58,23 +58,23 @@ The system is organized into modular components following a sequential pipeline.
 </p>
 
 The system was designed to process each observation (row) independently, testing whether the empirical distribution of first digits conforms to the theoretical distribution defined by Benford’s Law. The procedure begins with the extraction of the first digits from each numerical value of the analyzed row (Extraction of the first digits), followed by the calculation of the frequency of occurrence of each digit (Digit frequency calculation). This observed distribution is compared with the theoretical distribution of Benford’s Law through six statistical and distance methods:
-• Chi-square test (Pearson’s chi-square),
-• Mean absolute deviation (MAD),
-• Kolmogorov-Smirnov (KS),
-• Euclidian distance,
-• Hellinger distance,
-• Divergence of Kullback-Leibler.
+- Chi-square test (Pearson’s chi-square),
+- Mean absolute deviation (MAD),
+- Kolmogorov-Smirnov (KS),
+- Euclidian distance,
+- Hellinger distance,
+- Divergence of Kullback-Leibler.
 
 Each metric captures different aspects of deviation, from cumulative distribution differences to point-wise distances and divergence measures. The diversity of metrics increases the detection capability under different manipulation patterns. After computing these metrics, their statistical significance is assessed through the corresponding 𝑝-values. Values lower than the significance level 𝛼 indicate the rejection of the null hypothesis and, therefore, the classification of the case as manipulated (class 1). So, for each test, the model:
-• Generates the statistic and 𝑝-value,
-• Applies a decision rule (𝑝-value < 𝛼 classified as anomalous),
-• Records both the 𝑝-value and binary classification.
+- Generates the statistic and 𝑝-value,
+- Applies a decision rule (𝑝-value < 𝛼 classified as anomalous),
+- Records both the 𝑝-value and binary classification.
 
 To avoid numerical problems, very low values are truncated to 10−15. The 𝑝-values obtained in the six tests are combined by the Fisher’s combination method, resulting in a single aggregated measure. For these tests a significance level, 𝛼, previously configured is used to produce a final classification. Both the individual results of each test and the combined result are used to generate predictions that, together with real classes, feed the construction of the confusion matrix. From this matrix, performance metrics such as recision, recall and F1-score are calculated, allowing to evaluate the effectiveness of the model. In addition, a variation of 𝛼 (0 to 1, with step of 0.001) is generated to enable the construction of the ROC curves and analysis of the discriminatory capacity of each approach. This architecture allows independent evaluation of each metric’s performance, as well as the combined effect via Fisher’s method. The code was designed to ensure modularity to allow future extension with additional metrics or alternative combination methods. The system processes each row independently in an iterative loop, storing predictions, 𝑝-values, and performance metrics in structured arrays and DataFrames for later analysis. The model’s predictions were compared to the known class labels using a confusion matrix for each metric and for Fisher’s method. From the confusion matrix, the following performance indicators were computed:
-• True Positives (TP): correctly identified anomalous rows,
-• True Negatives (TN): correctly identified non-anomalous rows,
-• False Positives (FP): normal rows incorrectly flagged as anomalous,
-• False Negatives (FN): anomalous rows missed by the model.
+- True Positives (TP): correctly identified anomalous rows,
+- True Negatives (TN): correctly identified non-anomalous rows,
+- False Positives (FP): normal rows incorrectly flagged as anomalous,
+- False Negatives (FN): anomalous rows missed by the model.
 
 From these, precision, recall, and F1-score were calculated to provide a balanced view of classification performance. To complement the narrative description and improve the formal presentation of the proposed method, the Algorithm 2 outlines the process step-by-step. This structured representation facilitates replication and provides a clear overview of the workflow, from data input to the computation of performance metrics.
 
@@ -93,3 +93,19 @@ A sensitivity analysis was conducted in order to evaluate the performance of dif
 </p>
 
 The experimental process was repeated by systematically varying one parameter at a time, keeping the remaining constant, in order to study the impact of different factors on the performance of the methods. The variables tested included the ratio of manipulations per row (𝑡𝑚), the ratio of manipulated rows (𝑡B), the total number of rows (𝑛) and the number of columns per row (𝑚). Each simulation produced results recorded in Excel files, containing the performance metrics obtained for each experimental configuration. This experimental design ensured comparability between the methods, since all were evaluated under the same conditions and using the same simulated data in each scenario. The use of synthetic data also allowed to ensure the previous knowledge of the real class of each set, ensuring a rigorous evaluation of the anomaly detection capacity of each tested method.
+
+## Authors
+- Patrícia Martinho - MSc in Data Science, School of Technology and Management, Polytechnic Institute of Leiria; Leiria, Portugal; 2230377@my.ipleiria.pt;
+- Rui Santos - Department of Mathematics, School of Technology and Management, Polytechnic of Leiria; Leiria; Portugal; rui.santos@ipleiria.pt;
+- Mário Antunes - Department of Computer Engineering, School of Technology and Management, Polytechnic of Leiria; Leiria; Portugal; mario.antunes@ipleiria.pt;
+
+## Thesis Information
+
+This project is part of a master thesis conducted at the Instituto Politécnico de Leiria, supervised by Prof. Rui Santos e Prof. Mário Antunes.
+
+<img width="200" height="79" alt="image" src="https://github.com/user-attachments/assets/38cbb86d-157e-4495-8db6-7d49367c63ed" />
+
+## Questions
+For any questions, feel free to send an email: 2230377@my.ipleiria.pt
+
+
