@@ -16,7 +16,7 @@ Routines were created for sensitivity analysis, allowing to identify optimal ope
 ## Data generator
 
 The data generator generates a dataset with a quantity of features defined by parameter 𝑚 and a quantity of instances controlled by parameter 𝑛.
-The generated dataset contains a 𝑡B ratio of anomalous rows with a 𝑡𝑚 ratio of anomalous
+The generated dataset contains a 𝑡<sub>B</sub> ratio of anomalous rows with a 𝑡<sub>𝑚</sub> ratio of anomalous
 elements.
 
 <p align="center">
@@ -25,11 +25,11 @@ elements.
 
 #### Step 1a.Data creation according to Benford’s Law
 
-A data row is created with numbers generated from a uniform distribution between 0 and 1 which are then transformed by raising 10 to these values, so that they follow the Benford’s Law. That is, if 𝑥 ∈ 𝒰(0, 1) then log10(𝑥) follows a logarithmic distribution. After the generation of the row, or instance, according to the BL, it receives a label with the value 0, indicating that it does not contain anomalies. Then, several other rows without anomalies are generated, always using the same method, by adding the 0 label to these rows until the ratio given by 1-𝑡B is achieved (i.e., (1 − 𝑡B) 𝑛 rows without anomalies).
+A data row is created with numbers generated from a uniform distribution between 0 and 1 which are then transformed by raising 10 to these values, so that they follow the Benford’s Law. That is, if 𝑥 ∈ 𝒰(0, 1) then log<sub>10</sub>(𝑥) follows a logarithmic distribution. After the generation of the row, or instance, according to the BL, it receives a label with the value 0, indicating that it does not contain anomalies. Then, several other rows without anomalies are generated, always using the same method, by adding the 0 label to these rows until the ratio given by 1-𝑡<sub>B</sub> is achieved (i.e., (1 − 𝑡<sub>B</sub>) 𝑛 rows without anomalies).
 
 #### Step 1b. Data creation with anomalies
 
-After that, the generator creates rows that simulate instances with anomalies whose amount depends on the parameter 𝑡B(ratio of anomalous rows). For these, it generates a combination of numbers based on Benford’s Law, in proportion of 1-𝑡𝑚 ((1 − 𝑡𝑚)𝑚 numbers), and anomalous numbers according to the parameter 𝑡𝑚 (ratio of anomalies in each anomalous row, which corresponds to 𝑡𝑚𝑚 numbers). The anomalous row can originate in a uniform distribution, Gaussian noise, uniform noise, mixed noise (uniform + Gaussian) or they can be simple random outliers. Uniform distribution anomalies are obtained by a uniform continuous distribution between 0 and 100000. To create the anomalies based on Gaussian noise, the generator first generates data according to the Benfords Law, then generates the Gaussian noise based on a standard distribution between 0 and the 𝑖𝑛𝑡𝑒𝑛𝑠𝑖𝑡𝑦 parameter and at the end adds up the conforming data, with the noise. Generator creates the anomalies based on Uniform noise in the same way but instead of a normal distribution it uses a uniform distribution between −𝑖𝑛𝑡𝑒𝑛𝑠𝑖𝑡𝑦 and +𝑖𝑛𝑡𝑒𝑛𝑠𝑖𝑡𝑦. To generate mixed noise, the generator sums Benfords Law data with Gaussian noise data and Uniform noise data. All of anamalous rows are labeled 1, indicating the presence of anomalies.
+After that, the generator creates rows that simulate instances with anomalies whose amount depends on the parameter 𝑡<sub>B</sub>(ratio of anomalous rows). For these, it generates a combination of numbers based on Benford’s Law, in proportion of 1-𝑡<sub>𝑚</sub> ((1 − 𝑡<sub>𝑚</sub>)𝑚 numbers), and anomalous numbers according to the parameter 𝑡<sub>𝑚</sub> (ratio of anomalies in each anomalous row, which corresponds to 𝑡<sub>𝑚</sub>𝑚 numbers). The anomalous row can originate in a uniform distribution, Gaussian noise, uniform noise, mixed noise (uniform + Gaussian) or they can be simple random outliers. Uniform distribution anomalies are obtained by a uniform continuous distribution between 0 and 100000. To create the anomalies based on Gaussian noise, the generator first generates data according to the Benfords Law, then generates the Gaussian noise based on a standard distribution between 0 and the 𝑖𝑛𝑡𝑒𝑛𝑠𝑖𝑡𝑦 parameter and at the end adds up the conforming data, with the noise. Generator creates the anomalies based on Uniform noise in the same way but instead of a normal distribution it uses a uniform distribution between −𝑖𝑛𝑡𝑒𝑛𝑠𝑖𝑡𝑦 and +𝑖𝑛𝑡𝑒𝑛𝑠𝑖𝑡𝑦. To generate mixed noise, the generator sums Benfords Law data with Gaussian noise data and Uniform noise data. All of anamalous rows are labeled 1, indicating the presence of anomalies.
 
 #### Step 2.Shuffle
 
@@ -86,7 +86,7 @@ All performance results were organized into a Pandas DataFrame which can be used
 
 ## Sensitivity analysis
 
-A sensitivity analysis was conducted in order to evaluate the performance of different methods based on Benford’s Law in detecting numerical anomalies. The experimental process consisted of controlled generation of synthetic data, allowing to analyze the sensitivity and robustness of statistical tests in different experimental settings, following the steps that have already been previously explained. The kind of anomaly used in this experiments is the uniform data. In each simulation was played with the parameters explained in Table bellow.
+Sensitivity analysis was conducted in order to evaluate the performance of different methods based on Benford’s Law in detecting numerical anomalies. The experimental process consisted of controlled generation of synthetic data, allowing to analyze the sensitivity and robustness of statistical tests in different experimental settings, following the steps that have already been previously explained. The kind of anomaly used in this experiments is the uniform data. In each simulation was played with the parameters explained in Table bellow.
 
 <p align="center">
   <img width="613,5" height="196,5" alt="image" src="https://github.com/user-attachments/assets/aef7098d-7f28-44d5-9dce-0e783048c7a3" />
