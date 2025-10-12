@@ -1,6 +1,6 @@
 # <h1 align="center">Anomaly-Detection-in-Numerical-Data
 <p align="center">
-  <img width="283" height="197" alt="image" src="https://github.com/user-attachments/assets/000b7579-3767-4519-9053-468d08ea95ca" />
+  <img width="720" height="405" alt="image" src="https://github.com/user-attachments/assets/63cff2b0-1b08-4a49-ab7d-bf8b7dbc76d5" />
 </p>
 
 This project consists of a modular architecture to evaluate anomaly detection methods based on Benford’s Law. The system aims to overcome the difficulty that exists in objectively comparing different methods due to the lack of reference data verified in real data sets.
