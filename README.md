@@ -8,7 +8,12 @@ The second module consists of an unsupervised classification model based on stat
 
 The complete pipeline integrates synthetic data generation and classification model. It also generates comprehensive evaluations including precision, recall, F1-scores and ROC curves. 
 
-Routines were created for sensitivity analysis, allowing to identify optimal operating conditions and compare the different methods under controlled conditions.
+Routines were created for sensitivity analysis, allowing to identify optimal operating conditions and compare the different methods under controlled conditions
 
 ## Data generator
 
+The data generator generates a dataset with a quantity of features defined by parameter 𝑚 and a quantity of instances controlled by parameter 𝑛.
+The generated dataset contains a 𝑡B ratio of anomalous rows with a 𝑡𝑚 ratio of anomalous
+elements.
+
+<img width="738" height="535" alt="image" src="https://github.com/user-attachments/assets/ae38e6c1-cf34-4f77-95b4-c0f221fb15b6" />
